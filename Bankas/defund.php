@@ -9,7 +9,7 @@ echo 'Account: '.$user['account'] .'<br>';
 
 if(isset($_POST['defund'])){
     if($_POST['qty']>0 && is_numeric($_POST['qty'])){
-        if(($user['balance'] - (float)$_POST['qty']) >0 ){
+        if(($user['balance'] - (float)$_POST['qty']) >-0.001 ){
             $data[findByAccount($_GET['acc'])]['balance'] -= (float)$_POST['qty'];
             file_put_contents(__DIR__.'/data.json', json_encode($data));
             echo 'Nuskaityta sėkmingai: '.$_POST['qty'].' Eur';

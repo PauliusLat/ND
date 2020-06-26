@@ -1,0 +1,17 @@
+{
+    "name": "paulius/bankas",
+    "autoload":{
+        "psr-4":{
+            "App\\": "app",
+            "App\\DB\\": "app/db"
+        }
+    },
+    "description": "geras bankas",
+    "authors": [
+        {
+            "name": "Paulius Latvenas",
+            "email": "paulius@paulius.lt"
+        }
+    ],
+    "require": {}
+}

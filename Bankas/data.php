@@ -37,3 +37,12 @@ function sortByName($acc){
     }
     return $sortedData;
 }
+function isIdUniq($id){
+    global $data;
+    foreach($data as $index => $val){
+        if($id == $val['id']){
+            return false;
+        }
+    }
+    return true;
+}

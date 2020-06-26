@@ -24,32 +24,39 @@ function renderAccount(){
 
 function checkID($id1){
     $id = str_split($id1);
-    if(count($id)===11){
-        $sum=0;
-        $last=0;
-        for ($i=0, $j=1; $i <count($id)-1; $i++, $j++) {
-            $sum+= (($id[$i]+1)*$j);
-        }
-        $sum+=$id[0];
-        $last = $sum%11;
-        echo $last;
-        echo'<br>';
-        echo $sum;
-        if($last ==10){
+    $idNumber = array_map(
+        function($value) { return (int)$value; },
+        $id
+    );
+    if(isIdUniq($_POST['id'])){
+
+        if(count($idNumber)===11 && $idNumber[0]<7 && $idNumber[0]>0 && $idNumber[3]<2 && $idNumber[4]<3 && $idNumber[5]<4){
             $sum=0;
-            for ($i=0, $j=3; $i <count($id)-3; $i++, $j++) {
-                $sum += (($id[$i]+1)*$j);
+            $last=0;
+            for ($i=0, $j=1; $i <count($idNumber)-2; $i++, $j++) {
+                $sum+= (($idNumber[$i])*$j);
             }
-            $sum+=$id[8];
-            $sum+=$id[9];
+            $sum+=$idNumber[9];
             $last = $sum%11;
-            if($last ==10) $last = 0;
+            echo $last;
+            echo'<br>';
+            if($last ==10){
+                $sum=0;
+                for ($i=0, $j=3; $i <count($idNumber)-3; $i++, $j++) {
+                    $sum += (($idNumber[$i])*$j);
+                }
+                $sum+=$idNumber[7];
+                $sum+=$idNumber[8];
+                $sum+=$idNumber[9];
+                $last = $sum%11;
+                if($last ==10) $last = 0;
+            }
+            if($idNumber[10]==$last){
+                return true;
+            }else return false;
         }
-        if($id[10]==$last){
-            return true;
-        }else return false;
     }
-    return false;
+        return false;
 }
 function checkName($name){
     if(strlen($name) >3) return true;
@@ -58,13 +65,14 @@ function checkName($name){
 
 ?>
     <form action="" method="post">
-        <input type="text" name="name" id="name" value="Vardas">Vardas
+        <input type="text" name="name" id="name" value="Vardas"> Vardas
         <br>
-        <input type="text" name="surname" id="surname" value="Pavardė">Pavardė
+        <input type="text" name="surname" id="surname" value="Pavardė"> Pavardė
         <br>
-        <!-- <input type="hidden" name="account" id="account" value="Sąsk.Nr.">Sąsk.Nr.
-        <br> -->
-        <input type="number" name="id" id="id" value="a/k">a/k
+        <input type="text" name="account" id="account" value="LT23 0000 5..." readonly> Sąsk.Nr.
+        <br>
+        <input type="number" name="id" id="id" value="a/k"> a/k
         <br>
         <button type="submit" name="newAccount">PRIDĖTI</button>
+    
     </form>
