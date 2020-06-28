@@ -34,8 +34,8 @@ foreach($sortedData as $user){
 }
 
 
-echo '<table style="width:80%">
-<tr>
+echo '<table style="width:80%; padding:0 50px">
+<tr style="text-align:left">
   <th>Firstname</td>
   <th>Lastname</td> 
   <th>Account</td>

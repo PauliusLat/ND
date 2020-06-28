@@ -7,8 +7,9 @@ class Pages{
     public function __construct(){
 
         $uri = str_replace(DIR, '', $_SERVER['REQUEST_URI']);
-        $this->uriArr = explode('/', $uri);
-        
+        $uriParams = explode('?', $uri);
+        $this->uriArr = explode('/', $uriParams[0]);
+    
         $this->loadPage();
     }    
     function loadPage(){
@@ -17,16 +18,16 @@ class Pages{
             case '':
             break;
             case "new-account":
-                require __DIR__.'/NewAccount.php';
+                require '/opt/lampp/htdocs/BIT_PHP/ND/Bankas2/public/NewAccount.php';
             break;
             case 'list-accounts':
-                require __DIR__.'/List.php';
+                require '/opt/lampp/htdocs/BIT_PHP/ND/Bankas2/public/List.php';
             break;
             case 'add-funds':
-                require __DIR__.'/AddFunds.php';
+                require '/opt/lampp/htdocs/BIT_PHP/ND/Bankas2/public/AddFunds.php';
             break;
             case 'defund':
-                require __DIR__.'/DeFund.php';
+                require '/opt/lampp/htdocs/BIT_PHP/ND/Bankas2/public/DeFund.php';
             break;
             default:
                 echo '<div style="width:100%; text-align:center; font-size:50px;"><br><br><br><br><br>Request Not Found!<br><span style="color:red">404</span></div>';
